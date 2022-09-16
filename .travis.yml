@@ -1,0 +1,15 @@
+# Travis CI
+language: generic
+
+# needed for Docker
+sudo: required
+service:
+  - docker
+
+# do the needful
+before_install:
+  - docker build -t michaelp/docker-react -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true michaelp/docker-react npm run test -- --coverage
+

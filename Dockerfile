@@ -6,6 +6,9 @@ COPY . .
 RUN npm run build
 
 FROM nginx
+# port
+EXPOSE 8099
+
 COPY --from=builder /app/build /usr/share/nginx/html
 # http://hub.docker.com/_/nginx/
 # default container image for nginx auto starts so no need to do CMD run
